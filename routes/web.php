@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
+use App\Models\Clients;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +21,17 @@ Route::get('/', function () {
 
 Route::get('/user', function () {
     return view('user');
+});
+
+Route::get('/client/add', function(){
+   DB::table('clients')->insert([
+       'name'=>'Ramazan',
+       'surname'=>'Yertayev',
+       'age'=>'18'
+   ]);
+});
+
+Route::get('/client', function(){
+    $client=Clients::find(1);
+    return $client->surname;
 });
